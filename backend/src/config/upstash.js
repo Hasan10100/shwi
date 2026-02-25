@@ -1,12 +1,12 @@
-const {Ratelimit} = require("@upstash/ratelimit")
-const {Redis} = require("@upstash/redis")
-const dotenv = require("dotenv")
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+import { config } from "dotenv";
 
-dotenv.config();
+config();
 
 const rateLimit = new Ratelimit({
     redis: Redis.fromEnv(),
     limiter: Ratelimit.slidingWindow(10, "20 s")
 });
 
-module.exports = rateLimit;
+export default rateLimit;
