@@ -2,26 +2,18 @@
 FROM node:20-alpine AS build
 
 # Set working directory for common dependencies
-WORKDIR /app
+WORKDIR /app/frontend
 
-# Copy root package files
-COPY package*.json ./
+# Copy frontend package files
+COPY frontend/package*.json ./
 
-# Copy backend and frontend package files
-COPY backend/package*.json ./backend/
-COPY frontend/package*.json ./frontend/
-
-# Install all dependencies
+# Install frontend dependencies
 RUN npm install
-RUN cd backend && npm install
-RUN cd frontend && npm install
 
 # Copy source code
-COPY backend ./backend
-COPY frontend ./frontend
+COPY frontend ./
 
 # Build frontend
-WORKDIR /app/frontend
 RUN npm run build
 
 # Production image
@@ -36,7 +28,6 @@ COPY package*.json ./
 COPY backend/package*.json ./backend/
 
 # Install only production dependencies for the backend
-RUN npm install --omit=dev
 RUN cd backend && npm install --omit=dev
 
 # Copy backend source code
