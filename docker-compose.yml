@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   shwi-app:
+    image: hasan10100/shwi-app:latest 
     build:
       context: .
       dockerfile: Dockerfile
