@@ -27,7 +27,6 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        # Using a fixed tag "latest" for simplicity
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/shwi-app:latest
         cache-from: type=gha
         cache-to: type=gha,mode=max
