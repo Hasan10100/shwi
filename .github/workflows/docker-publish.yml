@@ -30,4 +30,3 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/shwi-app:latest
         cache-from: type=gha
         cache-to: type=gha,mode=max
-        
